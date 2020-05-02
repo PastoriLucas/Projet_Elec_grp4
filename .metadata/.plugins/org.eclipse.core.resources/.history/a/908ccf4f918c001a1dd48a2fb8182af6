@@ -1,0 +1,37 @@
+import gnu.io.*;
+import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.TooManyListenersException;
+
+import javax.swing.JFrame;
+
+public class Communicator implements SerialPortEventListener {
+JFrame window = new JFrame();
+private SerialPort portSerie;
+Communicator(JFrame window, CommPort commPort) {
+	this.portSerie
+}
+
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void serialEvent(SerialPortEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
