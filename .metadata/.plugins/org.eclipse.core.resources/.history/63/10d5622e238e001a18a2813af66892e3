@@ -13,7 +13,7 @@ public class ProjetController implements SerialPortEventListener {
 	private ProjetView theView;
 	private ProjetModel theModel;
 	
-	public ProjetController(ProjetView theView, ProjetModel theModel/*, CommPort monCommPort*/){
+	public ProjetController(ProjetView theView, ProjetModel theModel, CommPort monCommPort){
 		this.theView = theView;
 		this.theModel = theModel;
 		this.theView.calculerDistance(new DistanceListener());	
@@ -44,13 +44,10 @@ public class ProjetController implements SerialPortEventListener {
 				System.out.println("Recu : " + dataReceived);
 				
 				if(dataReceived.compareToIgnoreCase("1") ==0) {
-					theView.setAlerte("! ! ! ALERTE RECUE ! ! !", Color.red);
+					theView.setAlerte("! ! ! ALERTE ! ! !", Color.red);
 				}
 				else if(dataReceived.compareToIgnoreCase("2")==0) {
 					theView.setAlerte("Rien à signaler.", Color.green);
-				}
-				else {
-					theView.setDistance("Distance reçue : " + dataReceived + "cm.");
 				}
 			}
 		}

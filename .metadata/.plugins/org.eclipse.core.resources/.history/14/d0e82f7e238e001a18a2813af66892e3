@@ -15,7 +15,6 @@ public class ProjetView {
 	private JTextField entrerSeuil = new JTextField(3);
 	private JButton appliquerSeuil = new JButton("Appliquer");
 	private JLabel alerte = new JLabel("Pas d'alertes");
-	private JLabel resultat = new JLabel("Distance reçue : /");
 	
 
 	public ProjetView() {
@@ -55,9 +54,6 @@ public class ProjetView {
 		alerte.setForeground(Color.green);
 		alerte.setBounds(140, 260, 100, 20);
 		window.add(alerte);
-		
-		resultat.setBounds(120, 350, 200, 20);
-		window.add(resultat);
 
 		window.setVisible(true);
 	}
@@ -66,17 +62,13 @@ public class ProjetView {
 		return(entrerSeuil.getText());
 	}
 	
-	public void setSeuil(String seuil) {
-		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + seuil);
+	public void setDistance(String dist) {
+		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + dist);
 	}
 	
 	public void setAlerte(String msgAlerte, Color color) {
 		alerte.setText(msgAlerte);
 		alerte.setForeground(color);
-	}
-	
-	public void setDistance(String dist) {
-		resultat.setText(dist);
 	}
 	
 	void calculerDistance(ActionListener listenForDistanceButton){
