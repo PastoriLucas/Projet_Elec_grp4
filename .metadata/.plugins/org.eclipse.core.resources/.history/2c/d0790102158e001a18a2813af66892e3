@@ -1,0 +1,46 @@
+import java.awt.Color;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class ProjetView extends JFrame {
+	
+	private JLabel labelChoixPort = new JLabel("Choisissez le port : ");
+	private String[] ports = new String[] {"COM1", "COM2"};
+	private JComboBox<String> choixPort = new JComboBox<>(ports);
+	private JLabel labelAfficherSeuil = new JLabel("Seuil de distance maximal : 100");	
+	private JLabel labelEntrerSeuil = new JLabel("  Nouveau seuil de distance: ");
+	private JTextField entrerSeuil = new JTextField(3);
+	private JButton calculerDistance = new JButton("Appliquer");
+	private JLabel alerte = new JLabel("! ! ! ALERTE ! ! !" : ");
+
+	public ProjetView() {
+		
+		setTitle("Electronique Groupe 4");
+		JPanel affichage = new JPanel();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(350, 600);
+	
+		affichage.add(labelChoixPort);
+		affichage.add(choixPort);
+		affichage.add(labelAfficherSeuil);
+		affichage.add(labelEntrerSeuil);
+		affichage.add(entrerSeuil);
+		affichage.add(calculerDistance);
+		affichage.add(alerte);
+
+		this.add(affichage);
+	}
+	
+	public String getSeuil() {
+		return(entrerSeuil.getText());
+	}
+	
+	public void setDistance(String dist) {
+		labelAfficherSeuil.setText("Seuil de distance maximal : " + dist);
+	}
+	
+	void calculerDistance(ActionListener listenForDistanceButton){
+		calculerDistance.addActionListener(listenForDistanceButton);
+	}
+}

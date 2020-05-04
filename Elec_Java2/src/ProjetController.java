@@ -1,7 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class ProjetController {
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+
+public class ProjetController implements SerialPortEventListener {
 	private ProjetView theView;
 	private ProjetModel theModel;
 	
@@ -17,13 +21,9 @@ public class ProjetController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int distance = 0;
 			try {
-				distance = theView.getDistance();
-				
-				theModel.getDistanceValue();
-				
-				theView.setDistance(theModel.getDistanceValue());
+				theModel.setSeuil(theView.getSeuil());
+				theView.setDistance(theModel.getSeuil());
 			}
 			catch(NumberFormatException ex){
 				
@@ -31,5 +31,16 @@ public class ProjetController {
 			
 		}
 		
+	}
+	
+	@Override
+	public void serialEvent(SerialPortEvent arg0) {
+		/*try {
+			
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		*/
 	}
 }

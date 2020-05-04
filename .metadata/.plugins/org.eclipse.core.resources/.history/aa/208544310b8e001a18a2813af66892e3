@@ -1,0 +1,40 @@
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class ProjetView extends JFrame {
+	
+	public ProjetView() {
+		
+		setTitle("Electronique Groupe 4");
+		getContentPane().setLayout(null);
+		JPanel affichage = new JPanel();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600, 200);
+		String[] ports = new String[] {"COM1", "COM2"};
+		JComboBox<String> choixPort = new JComboBox<>(ports);
+		JTextField entrerDistance = new JTextField(10);
+		JLabel resultat = new JLabel("Distance : ");
+		JButton calculerDistance = new JButton("Afficher");
+		
+		affichage.add(choixPort);
+		choixPort.setBounds(400, 400, 100,100);
+		affichage.add(entrerDistance);
+		affichage.add(resultat);
+		affichage.add(calculerDistance);
+		
+		this.add(affichage);
+	}
+	
+	public int getDistance() {
+		return(Integer.parseInt(entrerDistance.getText()));
+	}
+	
+	public void setDistance(int dist) {
+		resultat.setText(Integer.toString(dist));
+	}
+	
+	void calculerDistance(ActionListener listenForDistanceButton){
+		calculerDistance.addActionListener(listenForDistanceButton);
+	}
+}
