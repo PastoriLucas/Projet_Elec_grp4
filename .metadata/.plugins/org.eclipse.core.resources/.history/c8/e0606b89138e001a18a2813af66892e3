@@ -1,0 +1,12 @@
+public class ProjetModel {
+
+	private String distance = "1000";
+	
+	public void setDistanceValue(String val) {
+		this.distance = val;
+	}
+	
+	public String getDistanceValue() {
+		return distance;
+	}
+}

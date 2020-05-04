@@ -1,0 +1,15 @@
+public class ProjetModel {
+	/*
+	private String seuil = "0";
+	
+	seuil = theView.getSeuil();
+	theView.setDistance(seuil);
+	
+	public void setDistanceValue(String val) {
+		this.distance = val;
+	}
+	
+	public String getDistanceValue() {
+		return distance;
+	}*/
+}

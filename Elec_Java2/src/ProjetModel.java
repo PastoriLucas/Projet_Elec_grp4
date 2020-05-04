@@ -1,8 +1,12 @@
 public class ProjetModel {
 
-	private int distance;
+	public String seuil = "0";
 	
-	public int getDistanceValue() {
-		return distance;
+	public void setSeuil(String val) {
+		this.seuil = val;
+	}
+	
+	public String getSeuil() {
+		return seuil;
 	}
 }
