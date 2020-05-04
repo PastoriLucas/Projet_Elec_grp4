@@ -17,9 +17,9 @@ public class ProjetController {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int distance = 0;
+			int seuil = 0;
 			try {
-				distance = theView.getDistance();
+				seuil = theView.getSeuil();
 				
 				theModel.getDistanceValue();
 				
