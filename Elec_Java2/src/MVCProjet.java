@@ -1,4 +1,3 @@
-
 public class MVCProjet {
 
 	public static void main(String[] args) {

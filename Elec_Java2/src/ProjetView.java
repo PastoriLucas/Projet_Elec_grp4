@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -10,12 +9,14 @@ public class ProjetView {
 	private JLabel titre = new JLabel("PROJET D'ELECTRONIQUE");
 	private JLabel labelChoixPort = new JLabel("Choisissez le port : ");
 	private String[] ports = new String[] {"COM1", "COM2"};
-	private JComboBox<String> choixPort = new JComboBox<>(ports);
-	private JLabel labelAfficherSeuil = new JLabel("Seuil de distance maximal actuel : 100");	
+	public JComboBox<String> choixPort = new JComboBox<>(ports);
+	private JLabel labelAfficherSeuil = new JLabel("Seuil de distance maximal actuel : 1");	
 	private JLabel labelEntrerSeuil = new JLabel("  Nouveau seuil de distance: ");
 	private JTextField entrerSeuil = new JTextField(3);
 	private JButton appliquerSeuil = new JButton("Appliquer");
 	private JLabel alerte = new JLabel("Pas d'alertes");
+	private JLabel resultat = new JLabel("Distance reçue : /");
+	private JButton recherche = new JButton("Recherche ports");
 	
 
 	public ProjetView() {
@@ -55,6 +56,12 @@ public class ProjetView {
 		alerte.setForeground(Color.green);
 		alerte.setBounds(140, 260, 100, 20);
 		window.add(alerte);
+		
+		resultat.setBounds(120, 350, 200, 20);
+		window.add(resultat);
+		
+		recherche.setBounds(160, 300, 200, 20);
+		window.add(recherche);
 
 		window.setVisible(true);
 	}
@@ -63,10 +70,22 @@ public class ProjetView {
 		return(entrerSeuil.getText());
 	}
 	
-	public void setDistance(String dist) {
-		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + dist);
+	public void setSeuil(String seuil) {
+		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + seuil);
 	}
 	
+	public void setAlerte(String msgAlerte, Color color) {
+		alerte.setText(msgAlerte);
+		alerte.setForeground(color);
+	}
+	
+	public void setDistance(String dist) {
+		resultat.setText(dist);
+	}
+
+	void recherchePorts(ActionListener listenForRechercheButton){
+		recherche.addActionListener(listenForRechercheButton);
+	}
 	void calculerDistance(ActionListener listenForDistanceButton){
 		appliquerSeuil.addActionListener(listenForDistanceButton);
 	}
