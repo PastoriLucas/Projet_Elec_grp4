@@ -1,0 +1,27 @@
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
+public class ProjetModel implements Observable {
+
+	public String seuil = "0";
+	
+	public void setSeuil(String val) {
+		this.seuil = val;
+	}
+	
+	public String getSeuil() {
+		return seuil;
+	}
+
+	@Override
+	public void addListener(InvalidationListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeListener(InvalidationListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+}

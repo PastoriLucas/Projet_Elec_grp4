@@ -2,11 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 
-public class ProjetView {
-	
+public class ProjetView implements Observer{
+	private ProjetModel model = new ProjetModel();
 	private JLabel titre = new JLabel("PROJET D'ELECTRONIQUE");
 	private JLabel labelChoixPort = new JLabel("Choisissez le port : ");
 	private String[] ports = new String[] {"COM1", "COM2"};
@@ -18,7 +20,9 @@ public class ProjetView {
 	private JLabel alerte = new JLabel("Pas d'alertes");
 	
 
-	public ProjetView() {
+	public ProjetView(ProjetModel model) {
+		
+		this.model = model;
 		
 		JFrame window = new JFrame();
 		window.setTitle("Electronique Groupe 4");
@@ -63,11 +67,17 @@ public class ProjetView {
 		return(entrerSeuil.getText());
 	}
 	
-	public void setDistance(String dist) {
-		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + dist);
+	public void setDistance(String string) {
+		labelAfficherSeuil.setText("Seuil de distance maximal actuel : " + string);
 	}
 	
 	void calculerDistance(ActionListener listenForDistanceButton){
 		appliquerSeuil.addActionListener(listenForDistanceButton);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.setDistance(this.model.getDist());
+		
 	}
 }
