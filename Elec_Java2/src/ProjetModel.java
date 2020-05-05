@@ -6,6 +6,8 @@ import gnu.io.SerialPort;
 
 public class ProjetModel {
 
+	public String distanceRecue = "111";
+	
 	public String seuil = "0";
 	public SerialPort monPortSerie;
 	public CommPortIdentifier portId;
@@ -20,5 +22,9 @@ public class ProjetModel {
 	
 	public String getSeuil() {
 		return seuil;
+	}
+	
+	public String getDistance() {
+		return distanceRecue;
 	}
 }

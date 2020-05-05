@@ -4,5 +4,10 @@ public class MVCProjet {
 		ProjetView theView = new ProjetView();
 		ProjetModel theModel = new ProjetModel();
 		ProjetController theController = new ProjetController(theView, theModel);
+		 
+		Object selectedItem = theView.choixPort.getSelectedItem();
+
+	        String com = selectedItem.toString();
+	        theController.SimpleRead(com);
 	}
 }
