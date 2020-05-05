@@ -23,6 +23,7 @@ public class ProjetController implements SerialPortEventListener {
 		this.theModel = theModel;
 		this.theView.calculerDistance(new DistanceListener());	
 		this.theView.recherchePorts(new RechercheListener());
+		this.theView.choisirPort(new ChoixPortListener());
 	}
 	
 	public void SimpleRead(String com) {
@@ -31,40 +32,26 @@ public class ProjetController implements SerialPortEventListener {
         	theModel.portId = (CommPortIdentifier) theModel.portList.nextElement();
             if (theModel.portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
                 if (theModel.portId.getName().equals(com)) {
-                    //                if (portId.getName().equals("/dev/term/a")) {
-                    try {
-                    	theModel.serialPort = (SerialPort) theModel.portId.open("SimpleReadApp", 2000);
-                    } catch (PortInUseException e) {
-                        System.out.println(e);
-                    }
-                    try {
-                    	theModel.inputStream = theModel.serialPort.getInputStream();
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                    try {
-                    	theModel.serialPort.addEventListener(this);
-                    } catch (TooManyListenersException e) {
-                        System.out.println(e);
-                    }
-                    theModel.serialPort.notifyOnDataAvailable(true);
-                    try {
-                    	theModel.serialPort.setSerialPortParams(9600,
-                                SerialPort.DATABITS_8,
-                                SerialPort.STOPBITS_1,
-                                SerialPort.PARITY_NONE);
-                    } catch (UnsupportedCommOperationException e) {
-                        System.out.println(e);
-                    }
+                	try {
+            			theModel.monPortSerie.addEventListener(this);
+            			theModel.monPortSerie.notifyOnDataAvailable(true);
+            			theModel.monPortSerie.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            		}
+            		catch(TooManyListenersException e) {
+            			e.printStackTrace();
+            		}
+            		catch(UnsupportedCommOperationException e) {
+            			e.printStackTrace();
+            		}
                     theModel.readThread = new Thread();
                     theModel.readThread.start();
                 }
             }
         }
-
+		
     }
 	
-	/*@Override
+	@Override
 	public void serialEvent(SerialPortEvent event) {
 		try {
 			BufferedReader myBuffer = new BufferedReader(new InputStreamReader(theModel.monPortSerie.getInputStream()));
@@ -86,9 +73,9 @@ public class ProjetController implements SerialPortEventListener {
 		catch(IOException e){
 			e.printStackTrace();
 		}
-	}*/
+	}
 
-	public void serialEvent(SerialPortEvent event) {
+	/*public void serialEvent(SerialPortEvent event) {
         switch (event.getEventType()) {
             case SerialPortEvent.BI:
             case SerialPortEvent.OE:
@@ -118,7 +105,7 @@ public class ProjetController implements SerialPortEventListener {
                 }
                 break;
         }
-    }
+    }*/
 	
 	public static void waiting(int n) {
 
@@ -138,6 +125,7 @@ public class ProjetController implements SerialPortEventListener {
             System.out.println(e);
         }
     }
+	
 	class DistanceListener implements ActionListener {
 
 		@Override
@@ -145,6 +133,14 @@ public class ProjetController implements SerialPortEventListener {
 			try {
 				theModel.setSeuil(theView.getSeuil());
 				theView.setSeuil(theModel.getSeuil());
+				
+				theView.setDistance("Distance reçue : " + theModel.distanceRecue);
+				if(Integer.parseInt(theModel.getDistance()) > Integer.parseInt(theView.getSeuil())) {
+					theView.setAlerte("DISTANCE TROP GRANDE", Color.red);
+				}
+				else {
+					theView.setAlerte("Rien à signaler", Color.green);
+				}
 			}
 			catch(NumberFormatException ex){
 				
@@ -173,5 +169,20 @@ public class ProjetController implements SerialPortEventListener {
 				
 			}	
 		}
-	}		
+	}	
+	
+	class ChoixPortListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				Object selectedItem = theView.choixPort.getSelectedItem();
+
+		        String com = selectedItem.toString();
+		        SimpleRead(com);
+			}
+			catch(NumberFormatException ex){
+				
+			}	
+		}
+	}
 }
