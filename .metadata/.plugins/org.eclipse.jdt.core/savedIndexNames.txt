@@ -1,0 +1,50 @@
+<<<<<<< HEAD
+INDEX VERSION 1.127+C:\Users\myria\Desktop\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.jdt.core
+2345904862.index
+200290442.index
+3166927587.index
+686889833.index
+3720716507.index
+3839578677.index
+2200875372.index
+561689436.index
+1840562121.index
+4159017284.index
+1912524244.index
+3993276655.index
+1357821322.index
+2609714019.index
+711050520.index
+3316466471.index
+847532175.index
+615226062.index
+2973695523.index
+858989570.index
+3450831843.index
+1542774334.index
+1741647643.index
+2538946849.index
+1148937498.index
+=======
+INDEX VERSION 1.127+C:\Users\luyck\Desktop\projetElec\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.jdt.core
+1151569180.index
+4069293921.index
+2060039664.index
+379664343.index
+3429681154.index
+3973945260.index
+2772419465.index
+2975910402.index
+165794779.index
+646436966.index
+4120324546.index
+847532175.index
+1459523266.index
+2755271588.index
+3384131066.index
+753608048.index
+1912524244.index
+3572716771.index
+364096953.index
+2845807539.index
+>>>>>>> master
