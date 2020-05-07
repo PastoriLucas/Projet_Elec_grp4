@@ -26,6 +26,31 @@ public class ProjetController implements SerialPortEventListener {
 		this.theView.recherchePorts(new RechercheListener());
 		this.theView.choisirPort(new ChoixPortListener());
 	}
+	/*
+	public void SimpleRead(String com) {
+        theModel.portList = CommPortIdentifier.getPortIdentifiers();
+        while (theModel.portList.hasMoreElements()) {
+        	theModel.portId = (CommPortIdentifier) theModel.portList.nextElement();
+            if (theModel.portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                if (theModel.portId.getName().equals(com)) {
+                	try {
+            			theModel.monPortSerie.addEventListener(this);
+            			theModel.monPortSerie.notifyOnDataAvailable(true);
+            			theModel.monPortSerie.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            		}
+            		catch(TooManyListenersException e) {
+            			e.printStackTrace();
+            		}
+            		catch(UnsupportedCommOperationException e) {
+            			e.printStackTrace();
+            		}
+                    //theModel.readThread = new Thread();
+                    //theModel.readThread.start();
+                }
+            }
+        }
+    }
+	*/
 	
 	public void SimpleRead(String com) {
         theModel.portList = CommPortIdentifier.getPortIdentifiers();
@@ -73,6 +98,7 @@ public class ProjetController implements SerialPortEventListener {
 			if(event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 				String dataReceived = myBuffer.readLine();
 				System.out.println("Recu : " + dataReceived);
+				theModel.setDistance
 				
 				if(dataReceived.compareToIgnoreCase("1") ==0) {
 					theView.setAlerte("! ! ! ALERTE RECUE ! ! !", Color.red);
@@ -92,6 +118,38 @@ public class ProjetController implements SerialPortEventListener {
 			e.printStackTrace();
 		}
 	}
+
+	/*public void serialEvent(SerialPortEvent event) {
+        switch (event.getEventType()) {
+            case SerialPortEvent.BI:
+            case SerialPortEvent.OE:
+            case SerialPortEvent.FE:
+            case SerialPortEvent.PE:
+            case SerialPortEvent.CD:
+            case SerialPortEvent.CTS:
+            case SerialPortEvent.DSR:
+            case SerialPortEvent.RI:
+            case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
+                break;
+            case SerialPortEvent.DATA_AVAILABLE:
+                byte[] readBuffer = new byte[12];
+
+                try {
+                    while (theModel.inputStream.available() > 0) {
+                        //int numBytes = inputStream.read(readBuffer);
+                    	theModel.inputStream.read(readBuffer);
+                    }
+
+                    String y = new String(readBuffer);
+                    System.out.print(new String(readBuffer));
+                    theView.setDistance("    " + y + "    ");
+                    waiting(1);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+                break;
+        }
+    }*/
 	
 	public static void waiting(int n) {
 

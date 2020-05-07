@@ -7,8 +7,9 @@ import gnu.io.SerialPort;
 
 public class ProjetModel {
 
-	public int distanceRecue;	
-	public int seuil = 0;
+	public int distanceRecue;
+	
+	public String seuil = "0";
 	public SerialPort monPortSerie;
 	public CommPortIdentifier portId;
     public Enumeration portList;
@@ -16,20 +17,20 @@ public class ProjetModel {
     InputStream inputStream;
     Thread readThread;
     
-	public void setSeuil(int val) {
+	public void setSeuil(String val) {
 		this.seuil = val;
 	}
 	
-	public int getSeuil() {
+	public String getSeuil() {
 		return seuil;
 	}
 	
-	public void setDistance(String dist) {
-		int tempo = Integer.parseInt(dist);
+	public void setDistance(int dist) {
+		int tempo = Integer.parseInt(this.distanceRecue);
 		this.distanceRecue = tempo;
 	}
 	
-	public int getDistance() {
+	public String getDistance() {
 		return distanceRecue;
 	}
 }

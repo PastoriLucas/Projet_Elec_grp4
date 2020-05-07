@@ -20,7 +20,7 @@ public class ProjetModel {
 		this.seuil = val;
 	}
 	
-	public int getSeuil() {
+	public String getSeuil() {
 		return seuil;
 	}
 	
