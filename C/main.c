@@ -1,0 +1,108 @@
+#include <main.h>
+#include <stdio.h>
+#fuses HS, NOPROTECT, NOLVP, NOWDT 
+#use rs232(baud=9600,xmit=PIN_C6,rcv=PIN_C7,bits=8)
+
+#byte PORTC = 0xF82
+
+#INT_RDA//communication rs232
+char buffer[4];
+int toRead=0;
+int compteur=0;
+void  RDA_isr(void) 
+{
+   buffer[compteur]=getc();
+   if(buffer[0]=='!' && toRead==0){                          
+      compteur++;
+      if(compteur>=4){            
+         compteur=0;
+         toRead=1;
+      }
+   }
+   
+}
+
+void main()
+{
+   
+   int16 valeur;
+   int16 seuil;
+   seuil = 50;
+   long temps;
+   int gauche,droite;
+   int centaine,dizaine,unite;
+   
+   set_tris_c(0b10000010);
+   
+   enable_interrupts(INT_RDA);
+   enable_interrupts(GLOBAL);
+   setup_timer_0(RTCC_INTERNAL);
+
+   while(TRUE)
+   {
+   
+         //Initialisation
+         output_low(PIN_C0);
+         delay_us(5);
+         
+        //Démarrage
+        output_high(PIN_C0);
+        delay_us(10);
+        output_low(PIN_C0);
+         
+        //Mise en marche
+        while(!input(PIN_C1)) {}
+        set_timer0(0);
+        while(input(PIN_C1)) {}
+        temps = (long)get_timer0()*1.6;
+        
+        //Calcul
+        valeur = (int16)temps*0.017;//En centimètres
+        printf("%ld",valeur);
+        
+        //Affichage
+       if (valeur >= 1000) {
+            gauche = 0;
+            droite = 0;
+            output_high(PIN_E0);
+       }
+       else if (valeur >= 100) {
+            gauche =(int) (valeur/100);
+            droite =(int) ((valeur%100)/10);
+            output_high(PIN_E0);
+         }
+       else if (valeur >=10) {
+            gauche = (int) (valeur/10);
+            droite = (int) (valeur%10);
+            output_low(PIN_E0);
+       }
+       else {
+            gauche = 0;
+            droite = (int) valeur;
+            output_low(PIN_E0);
+       }
+       output_b(gauche+(droite<<4));
+       
+       //Calcul du seuil
+       if (toRead == 1) {
+         centaine = buffer[1] - 48;
+         dizaine = buffer[2] - 4;
+         unite = buffer[3] - 48;
+         seuil = (int16) ((100*dizaine)+(10*dizaine)+unite);
+         toRead = 0;
+       }
+
+       
+       //Gestion led % seuil
+       if (valeur > seuil) {
+            output_low(PIN_E2);
+            output_toggle(PIN_E1);
+       }
+       else {
+            output_high(PIN_E2);
+            output_low(PIN_E1);
+       }
+ 
+  }
+}
+               
