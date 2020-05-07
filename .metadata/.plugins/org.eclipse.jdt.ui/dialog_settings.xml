@@ -69,7 +69,11 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+<<<<<<< HEAD
 			<item value="C:\Users\myria\Desktop\test.jar"/>
+=======
+			<item value="C:\Users\luyck\OneDrive\Bureau\essai.jar"/>
+>>>>>>> master
 		</list>
 	</section>
 	<section name="JavaElementSearchActions">

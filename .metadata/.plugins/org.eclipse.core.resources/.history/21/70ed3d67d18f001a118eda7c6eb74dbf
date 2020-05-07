@@ -84,7 +84,7 @@ public class ProjetController implements SerialPortEventListener {
                     } catch (UnsupportedCommOperationException e) {
                         System.out.println(e);
                     }
-                    theModel.readThread = new Thread();
+                    theModel.readThread = new Thread(this);
                     theModel.readThread.start();
                 }
             }

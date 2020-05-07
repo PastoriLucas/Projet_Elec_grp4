@@ -66,26 +66,26 @@ public class ProjetController implements SerialPortEventListener {
                         System.out.println(e);
                     }
                     try {
-                    	theModel.inputStream = theModel.monPortSerie.getInputStream();
+                    	theModel.inputStream = theModel.monPortSerial.getInputStream();
                     } catch (IOException e) {
                         System.out.println(e);
                     }
                     try {
-                    	theModel.monPortSerie.addEventListener(this);
+                        serialPort.addEventListener(this);
                     } catch (TooManyListenersException e) {
                         System.out.println(e);
                     }
-                    theModel.monPortSerie.notifyOnDataAvailable(true);
+                    serialPort.notifyOnDataAvailable(true);
                     try {
-                    	theModel.monPortSerie.setSerialPortParams(9600,
+                        serialPort.setSerialPortParams(9600,
                                 SerialPort.DATABITS_8,
                                 SerialPort.STOPBITS_1,
                                 SerialPort.PARITY_NONE);
                     } catch (UnsupportedCommOperationException e) {
                         System.out.println(e);
                     }
-                    theModel.readThread = new Thread();
-                    theModel.readThread.start();
+                    readThread = new Thread(this);
+                    readThread.start();
                 }
             }
         }

@@ -15,7 +15,8 @@ public class ProjetModel {
     public Enumeration portList;
     public CommPort monCommPort;
     InputStream inputStream;
-    Thread readThread;
+    //SerialPort serialPort;
+    //Thread readThread;
     
 	public void setSeuil(String val) {
 		this.seuil = val;
