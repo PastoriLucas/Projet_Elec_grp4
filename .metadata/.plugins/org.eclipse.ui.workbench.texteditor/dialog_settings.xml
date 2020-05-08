@@ -2,66 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<item value="buttonUP" key="selection"/>
-=======
-		<item value="Recherche" key="selection"/>
->>>>>>> master
-=======
-		<item value="Simple" key="selection"/>
->>>>>>> master
+		<item value="x" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<item value="buttonUP"/>
-			<item value="update"/>
-=======
-			<item value="recherche"/>
-			<item value="liste"/>
-			<item value="appliquer"/>
-			<item value="actionl"/>
-			<item value="dista"/>
-			<item value="calculerDIs"/>
-			<item value="distanceLi"/>
-			<item value="recherc"/>
->>>>>>> master
-=======
-			<item value="simple"/>
-			<item value="Jcom"/>
-			<item value="labelEn"/>
-			<item value="simpleR"/>
-			<item value="syst"/>
-			<item value="recherche"/>
-			<item value="liste"/>
-			<item value="appliquer"/>
->>>>>>> master
+			<item value="x"/>
+			<item value="message"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-<<<<<<< HEAD
-		<item value="305" key="DIALOG_WIDTH"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
-		<item value="444" key="DIALOG_HEIGHT"/>
-		<item value="1122" key="DIALOG_X_ORIGIN"/>
-		<item value="207" key="DIALOG_Y_ORIGIN"/>
-=======
 		<item value="353" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
-		<item value="494" key="DIALOG_HEIGHT"/>
-<<<<<<< HEAD
-		<item value="1376" key="DIALOG_X_ORIGIN"/>
-		<item value="160" key="DIALOG_Y_ORIGIN"/>
->>>>>>> master
-=======
-		<item value="694" key="DIALOG_X_ORIGIN"/>
-		<item value="536" key="DIALOG_Y_ORIGIN"/>
->>>>>>> master
+		<item value="513" key="DIALOG_HEIGHT"/>
+		<item value="1419" key="DIALOG_X_ORIGIN"/>
+		<item value="84" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
