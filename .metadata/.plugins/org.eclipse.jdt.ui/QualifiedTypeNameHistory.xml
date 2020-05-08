@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<qualifiedTypeNameHistroy/>
-=======
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
-<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
-<fullyQualifiedTypeName name="java.awt.Font"/>
-<fullyQualifiedTypeName name="gnu.io.SerialPortEventListener"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="gnu.io.SerialPort"/>
-<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-<fullyQualifiedTypeName name="java.io.BufferedReader"/>
-<fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
-<fullyQualifiedTypeName name="gnu.io.CommPort"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
 </qualifiedTypeNameHistroy>
->>>>>>> master

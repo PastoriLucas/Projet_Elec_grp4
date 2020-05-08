@@ -90,6 +90,7 @@ public class ProjetView {
 		recherche.addActionListener(listenForRechercheButton);
 	}
 	void calculerDistance(ActionListener listenForDistanceButton){
+		System.out.println("Quelle est cette merde ?");
 		appliquerSeuil.addActionListener(listenForDistanceButton);
 	}
 }

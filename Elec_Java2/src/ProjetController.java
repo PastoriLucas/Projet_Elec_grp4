@@ -93,6 +93,67 @@ public class ProjetController implements SerialPortEventListener {
 		}
 	}
 	
+	public void sendData() {
+		System.out.println("Debut SendData()");
+		java.util.Enumeration<CommPortIdentifier> portEnum = CommPortIdentifier.getPortIdentifiers();
+	    /*int i = 0;
+	    String[] r = new String[5];
+	    while (portEnum.hasMoreElements() && i < 5) {
+	        CommPortIdentifier portIdentifier = portEnum.nextElement();
+	        r[i] = portIdentifier.getName();//+  " - " +  getPortTypeName(portIdentifier.getPortType()) ;		
+	        i++;	
+	    }
+	
+	    theView.choixPort.setModel(new javax.swing.DefaultComboBoxModel(r));
+		*/
+	    //------------------------------------------------
+	}
+	
+	public String ser(byte x , String com){	
+		System.out.println("Debut ser()");
+        theModel.portList = CommPortIdentifier.getPortIdentifiers();
+        while (theModel.portList.hasMoreElements()) {
+        	theModel.portId = (CommPortIdentifier) theModel.portList.nextElement();
+        	if (theModel.portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+        		if (theModel.portId.getName().equals(com)) {
+        			try {
+        				theModel.monPortSerie = (SerialPort)
+        						theModel.portId.open("SimpleWriteApp", 2000);
+        			} 
+        			catch (PortInUseException e) { 
+        				return "Port In Use";   
+        			}
+        			try {
+        				theModel.outputStream = theModel.monPortSerie.getOutputStream();
+        			} 
+        			catch (IOException e) {
+        				
+        			}
+        			try {
+        				theModel.monPortSerie.setSerialPortParams(9600,
+                        SerialPort.DATABITS_8,
+                        SerialPort.STOPBITS_1,
+                        SerialPort.PARITY_NONE);
+        			} 
+        			catch (UnsupportedCommOperationException e) {
+        				
+        			}
+        			try {
+        				theModel.outputStream.write(x);                   
+        			} 
+        			catch (IOException e) {
+        				return "Failed to Send Data";
+        			}
+        		}
+        	}
+        }
+    return "Data Sent";  
+	}
+	
+	public void closeSerial(){
+		theModel.monPortSerie.close(); 
+	}
+	
 	public static void waiting(int n) {
 
         long t0, t1;
@@ -116,9 +177,12 @@ public class ProjetController implements SerialPortEventListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("Et la ?");
 			try {
-				theModel.setSeuil(theView.getSeuil());
-				theView.setPhraseSeuil(theModel.getSeuil());
+				System.out.println("Ici ça marche");
+				sendData();
+				//theModel.setSeuil(theView.getSeuil());
+				//theView.setPhraseSeuil(theModel.getSeuil());
 				
 				theView.setDistance("Distance reçue : " + theModel.distanceRecue);
 				if(theModel.getDistance() > theModel.getSeuil()) {
