@@ -69,7 +69,6 @@ public class ProjetController implements SerialPortEventListener {
     }
 	@Override
 	public void serialEvent(SerialPortEvent event) {
-		System.out.println("Esasi");
 		try {
 			BufferedReader myBuffer = new BufferedReader(new InputStreamReader(theModel.monPortSerie.getInputStream()));
 			if(event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
@@ -127,13 +126,13 @@ public class ProjetController implements SerialPortEventListener {
 			}
 			try {				
 				theModel.outputStream.write(bs);     
+				System.out.println("Jusque la ok");
 			} 
 			catch (IOException e) {
 				return "Failed to Send Data";
 			}
 		}
-    System.out.println("Data Sent");  
-    return "Data send";
+    return "Data Sent";  
 }
 	
 	public void closeSerial(){
