@@ -109,7 +109,7 @@ public class ProjetController implements SerialPortEventListener, Runnable  {
 	    //------------------------------------------------
 	}
 	
-	public String ser(byte x , String com){	
+	public String ser(byte[] x , String com){	
         theModel.portList = CommPortIdentifier.getPortIdentifiers();
         while (theModel.portList.hasMoreElements()) {
         	theModel.portId = (CommPortIdentifier) theModel.portList.nextElement();
@@ -177,6 +177,8 @@ public class ProjetController implements SerialPortEventListener, Runnable  {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
+				String x = theView.getSeuilString(); 
+				String y = theView.choixPort.getSelectedItem().toString();
 				theModel.setSeuil(theView.getSeuil());
 				theView.setPhraseSeuil(theModel.getSeuil());
 				
@@ -187,6 +189,7 @@ public class ProjetController implements SerialPortEventListener, Runnable  {
 				else {
 					theView.setAlerte("Rien à signaler", Color.green);
 				}
+				ser(x.getBytes(), y);
 			}
 			catch(NumberFormatException ex){
 				

@@ -70,6 +70,10 @@ public class ProjetView {
 		return(Integer.parseInt(entrerSeuil.getText()));
 	}
 	
+	public String getSeuilString(){
+		return entrerSeuil.getText();
+	}
+	
 	public void setPhraseSeuil(int seuil) {
 		labelAfficherSeuil.setText("Seuil de distance maximal actuel (cm) : " + seuil);
 	}
