@@ -1,0 +1,39 @@
+
+!ENTRY org.eclipse.core.resources 4 566 2020-05-09 14:49:24.408
+!MESSAGE Could not save master table to file 'C:\Users\myria\Desktop\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources.bak'.
+!STACK 0
+java.io.FileNotFoundException: C:\Users\myria\Desktop\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources.bak (Le chemin d’accès spécifié est introuvable)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1284)
+	at org.eclipse.core.internal.resources.SaveManager.cleanMasterTable(SaveManager.java:232)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1193)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2270)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:453)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.ui.ide 4 4 2020-05-09 14:49:27.527
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2020-05-09 14:49:27.528
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 566 2020-05-09 14:49:27.528
+!MESSAGE Could not save master table to file 'C:\Users\myria\Desktop\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources'.
+!STACK 0
+java.io.FileNotFoundException: C:\Users\myria\Desktop\Projet_Elec_grp4\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources (Le chemin d’accès spécifié est introuvable)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1284)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1275)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1252)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2270)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:453)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
