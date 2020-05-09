@@ -1,0 +1,207 @@
+package Final;
+
+import gnu.io.*;
+import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.TooManyListenersException;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+
+public class Controller implements SerialPortEventListener {
+	GUI window = null;
+	Model model = null;
+	
+	 public Controller(Model model)
+	    {
+	        this.model = model;
+	    }
+	 
+	 public void AddGUI(GUI window){
+		 this.window = window;
+	 }
+	
+	public void searchForPorts()
+    {
+        model.ports = CommPortIdentifier.getPortIdentifiers();
+
+        while (model.ports.hasMoreElements())
+        {
+            CommPortIdentifier curPort = (CommPortIdentifier)model.ports.nextElement();
+
+            //get only serial ports
+            if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL)
+            {
+            	window.cboxPorts.addItem(curPort.getName());
+                model.portMap.put(curPort.getName(), curPort);
+            }
+        }
+    }
+	
+	public void connect()
+    {
+        String selectedPort = (String)window.cboxPorts.getSelectedItem();
+        model.selectedPortIdentifier = (CommPortIdentifier)model.portMap.get(selectedPort);
+
+        CommPort commPort = null;
+
+        try
+        {
+            //the method below returns an object of type CommPort
+            commPort = model.selectedPortIdentifier.open("TigerControlPanel", model.TIMEOUT);
+            //the CommPort object can be casted to a SerialPort object
+            model.serialPort = (SerialPort)commPort;
+
+            //for controlling GUI elements
+            model.bConnected = true;
+
+            //logging
+            System.out.println(selectedPort + " opened successfully."); 
+            
+        }
+        catch (PortInUseException e)
+        {
+        	System.out.println(selectedPort + " is in use. (" + e.toString() + ")"); 
+        }
+        catch (Exception e)
+        {
+        	System.out.println("Failed to open " + selectedPort + "(" + e.toString() + ")") ;
+        }
+    }
+	
+	//open the input and output streams
+    //pre style="font-size: 11px;": an open port
+    //post: initialized input and output streams for use to communicate data
+    public boolean initIOStream()
+    {
+        //return value for whether opening the streams is successful or not
+        boolean successful = false;
+
+        try {
+            //
+            model.input = model.serialPort.getInputStream();
+            model.output = model.serialPort.getOutputStream();
+            writeData(100);
+
+            successful = true;
+            return successful;
+        }
+        catch (IOException e) {
+        	System.out.println("I/O Streams failed to open. (" + e.toString() + ")"); 
+            return successful;
+        }
+    }
+    
+  //starts the event listener that knows whenever data is available to be read
+    //pre style="font-size: 11px;": an open serial port
+    //post: an event listener for the serial port that knows when data is received
+    public void initListener()
+    {
+        try
+        {
+            model.serialPort.addEventListener(this);
+            model.serialPort.notifyOnDataAvailable(true);
+        }
+        catch (TooManyListenersException e)
+        {
+        	System.out.println("Too many listeners. (" + e.toString() + ")");
+        }
+    }
+
+    
+  //disconnect the serial port
+    //pre style="font-size: 11px;": an open serial port
+    //post: closed serial port
+    public void disconnect()
+    {
+        //close the serial port
+        try
+        {
+
+            model.serialPort.removeEventListener();
+            model.serialPort.close();
+            model.input.close();
+            model.output.close();
+            model.bConnected = false;
+
+            System.out.println("Disconnected.");
+        }
+        catch (Exception e)
+        {
+        	System.out.println("Failed to close " + model.serialPort.getName()+ "(" + e.toString() + ")"); 
+        }
+    }
+    
+  //what happens when data is received
+    //pre style="font-size: 11px;": serial event is triggered
+    //post: processing on the data it reads
+    
+    int i = 0;
+    String result = "";
+    String actuel = "";
+    
+    public void serialEvent(SerialPortEvent evt) {
+        if (evt.getEventType() == SerialPortEvent.DATA_AVAILABLE)
+        {
+            try
+            {
+            	
+                byte singleData = (byte)model.input.read();
+
+                if (singleData != model.NEW_LINE_ASCII)
+                {   
+                	if(result.length() < 3) {
+                		result += new String(new byte[] {singleData});
+                		System.out.println(result);
+                	}
+                	else {
+                		if(result != actuel) {
+	                		window.resultat.setText(new String(new byte[] {singleData}));	                
+                		}
+                		else {
+                			System.out.println("Toujours la meme valeur");
+                		}
+                	}
+                }
+                else
+                {
+                	System.out.println("error");
+                }
+            }
+            catch (Exception e)
+            {
+            	System.out.println("Failed to read data. (" + e.toString() + ")"); 
+            }
+        }
+    }
+    
+  //method that can be called to send data
+    //pre style="font-size: 11px;": open serial port
+    //post: data sent to the other device
+    public void writeData(int seuil)
+    {
+        try
+        {
+            model.output.write(seuil);
+            model.output.flush();
+            //this is a delimiter for the data
+            model.output.write(model.DASH_ASCII);
+            model.output.flush();
+
+            //will be read as a byte so it is a space key
+            model.output.write(model.SPACE_ASCII);
+            model.output.flush();
+            
+            window.labelAfficherSeuil.setText("Seuil maximal actuel : " + seuil + " cm");
+        }
+        catch (Exception e)
+        {
+        	System.out.println("Failed to write data. (" + e.toString() + ")");
+        }
+    }
+    
+    
+}
