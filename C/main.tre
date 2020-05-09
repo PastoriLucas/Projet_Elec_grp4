@@ -1,0 +1,15 @@
+읕main
+   읕MAIN  0/540  Ram=6
+      쳐@cinit1  (Inline)  Ram=0
+      쳐@ITOF  0/54  Ram=2
+      쳐@MULFF  0/242  Ram=11
+      쳐@SFTOI  0/56  Ram=4
+      쳐@ITOF  0/54  Ram=2
+      쳐@MULFF  0/242  Ram=11
+      쳐@SFTOI  0/56  Ram=4
+      쳐@PRINTF_LD_9600_31766_31767  0/222  Ram=9
+      쳐@DIV1616  0/66  Ram=5
+      쳐@DIV1616  0/66  Ram=5
+      쳐@DIV1616  0/66  Ram=5
+      쳐@DIV1616  0/66  Ram=5
+      읕@DIV1616  0/66  Ram=5
