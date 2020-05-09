@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-<<<<<<< HEAD
-=======
-	<item value="1" key="org.eclipse.jdt.ui.last.selected.jre.kind2"/>
-	<item value="jre1.8.0_221" key="org.eclipse.jdt.ui.last.selected.project.jre"/>
->>>>>>> master
+	<section name="RefactoringWizard.preview">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
-<<<<<<< HEAD
-	<section name="ClasspathContainerSelectionPage">
-		<item value="3" key="index"/>
-	</section>
-=======
->>>>>>> master
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
-	<section name="BuildPathsPropertyPage">
-<<<<<<< HEAD
-		<item value="2" key="pageIndex"/>
-=======
-		<item value="3" key="pageIndex"/>
->>>>>>> master
+	<section name="NewPackageWizardPage">
+		<item value="false" key="create_package_info_java"/>
 	</section>
 	<section name="completion_proposal_size">
+		<item value="1037" key="size.y"/>
+		<item value="446" key="size.x"/>
 	</section>
 	<section name="JarPackageWizard">
 		<item value="false" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
@@ -39,7 +30,7 @@
 		<item value="true" key="jarOptionsWizardPage.EXPORT_WARNINGS"/>
 		<item value="" key="jarOptionsWizardPage.DESCRIPTION_LOCATION"/>
 		<item value="true" key="jarOptionsWizardPage.BUILD_IF_NEEDED"/>
-		<item value="false" key="JarPackageWizardPage.EXPORT_JAVA_FILES"/>
+		<item value="true" key="JarPackageWizardPage.EXPORT_JAVA_FILES"/>
 		<item value="true" key="jarOptionsWizardPage.EXPORT_ERRORS"/>
 		<item value="true" key="JarManifestWizardPage.GENERATE_MANIFEST"/>
 		<item value="true" key="JarPackageWizardPage.EXPORT_CLASS_FILES"/>
@@ -49,11 +40,7 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
-<<<<<<< HEAD
 			<item value="C:\Users\myria\Desktop\test.jar"/>
-=======
-			<item value="C:\Users\luyck\OneDrive\Bureau\essai.jar"/>
->>>>>>> master
 		</list>
 	</section>
 	<section name="JavaElementSearchActions">
