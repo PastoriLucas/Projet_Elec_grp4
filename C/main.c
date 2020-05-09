@@ -58,7 +58,7 @@ void main()
         
         //Calcul
         valeur = (int16)temps*0.017;//En centimètres
-        printf("%ld",valeur);
+        printf("%ld$",valeur);
         
         //Affichage
        if (valeur >= 1000) {
