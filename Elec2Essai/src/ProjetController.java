@@ -69,6 +69,7 @@ public class ProjetController implements SerialPortEventListener {
     }
 	@Override
 	public void serialEvent(SerialPortEvent event) {
+		System.out.println("Esasi");
 		try {
 			BufferedReader myBuffer = new BufferedReader(new InputStreamReader(theModel.monPortSerie.getInputStream()));
 			if(event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
@@ -99,28 +100,23 @@ public class ProjetController implements SerialPortEventListener {
 	}
 	
 	public String ser(byte[] bs , String com){	
-		System.out.println("Debut ser");
         theModel.portList = CommPortIdentifier.getPortIdentifiers();
-    	System.out.println("While");
     	theModel.portId = (CommPortIdentifier) theModel.portList.nextElement();
     	if (theModel.portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {       		
-			try {
-				System.out.println("Try1");
+			try {				
 				theModel.monPortSerie = (SerialPort)
 						theModel.portId.open("SimpleWriteApp", 2000);
 			} 
 			catch (PortInUseException e) { 
 				System.out.println("Port In Use");   
 			}
-			try {
-				System.out.println("Try2");
+			try {				
 				theModel.outputStream = theModel.monPortSerie.getOutputStream();
 			} 
 			catch (IOException e) {
 				return "error";
 			}
-			try {
-				System.out.println("Try3");
+			try {				
 				theModel.monPortSerie.setSerialPortParams(9600,
                 SerialPort.DATABITS_8,
                 SerialPort.STOPBITS_1,
@@ -129,15 +125,15 @@ public class ProjetController implements SerialPortEventListener {
 			catch (UnsupportedCommOperationException e) {
 				return "error";
 			}
-			try {
-				System.out.println("Try4");
-				theModel.outputStream.write(bs);                   
+			try {				
+				theModel.outputStream.write(bs);     
 			} 
 			catch (IOException e) {
 				return "Failed to Send Data";
 			}
 		}
-    return "Data Sent";  
+    System.out.println("Data Sent");  
+    return "Data send";
 }
 	
 	public void closeSerial(){

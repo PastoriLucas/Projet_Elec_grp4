@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<<<<<<< HEAD
 <listEntry value="/Java_Lulu/src/Final/MVC.java"/>
+=======
+<listEntry value="/Java_Matth/src/Final/MVC.java"/>
+>>>>>>> master
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Final.MVC"/>
+<<<<<<< HEAD
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Java_Lulu"/>
+=======
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Java_Matth"/>
+>>>>>>> master
 </launchConfiguration>
