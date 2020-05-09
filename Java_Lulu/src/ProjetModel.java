@@ -1,30 +1,42 @@
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Enumeration;
 
+import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 
 public class ProjetModel {
 
-	public String distanceRecue = "111";
-	
-	public String seuil = "0";
+	//static Enumeration portList;
+    //static CommPortIdentifier portId;
+    //static String messageString = "0";
+    //static SerialPort monPortSerie;
+
+	public int distanceRecue;	
+	public int seuil = 0;
 	public SerialPort monPortSerie;
 	public CommPortIdentifier portId;
     public Enumeration portList;
+    public CommPort monCommPort;
     InputStream inputStream;
-    SerialPort serialPort;
+    OutputStream outputStream;
     Thread readThread;
     
-	public void setSeuil(String val) {
+	public void setSeuil(int val) {
 		this.seuil = val;
 	}
 	
-	public String getSeuil() {
+	public int getSeuil() {
 		return seuil;
 	}
 	
-	public String getDistance() {
+	public void setDistance(String dist) {
+		int tempo = Integer.parseInt(dist);
+		this.distanceRecue = tempo;
+	}
+	
+	public int getDistance() {
 		return distanceRecue;
 	}
 }
