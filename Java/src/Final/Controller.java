@@ -67,15 +67,13 @@ public class Controller implements SerialPortEventListener {
         }
     }
 	
-	//open the input and output streams
-    //pre style="font-size: 11px;": an open port
-    //post: initialized input and output streams for use to communicate data
+
     public boolean initIOStream() {														//Initialise les inputStream et outputStream
         boolean successful = false;														//Renvoie si l'initialisation s'est bien passée ou pas
         try {
             model.input = model.serialPort.getInputStream();							//Définit l'inputStream dans une variable
             model.output = model.serialPort.getOutputStream();							//Définit l'outputStream dans une variable
-            writeData(100);																//Envoie le seuil par défaut (100cm)
+            writeData(50);																//Envoie le seuil par défaut (100cm)
             successful = true;															//Initialisation ok
             return successful;															
         }
@@ -123,13 +121,18 @@ public class Controller implements SerialPortEventListener {
         }
     }
     
-  //method that can be called to send data
-    //pre style="font-size: 11px;": open serial port
-    //post: data sent to the other device
+  
     public void writeData(int seuil) {														//Méthode qui envoie le seuil à la plaque de projet
         try {       	
-        	String withPrefix = "!" + seuil; 												//Ajoute un "!" pour que le code C détecte le début de la data
-            model.output.write(withPrefix.getBytes(Charset.forName("UTF-8")));				//Envoie le seuil sur l'outputStream
+        	if (seuil >=100) {
+        	    model.output.write(("!"+seuil).getBytes());
+        	}
+        	else if (seuil >= 10) {
+        	    model.output.write(("!0"+seuil).getBytes());
+        	}
+        	else {
+        	    model.output.write(("!00"+seuil).getBytes());
+        	}
             model.output.flush();															//Vide l'outputStream            
             model.seuil = seuil;															//Redéfinit le nouveau seuil
             window.labelAfficherSeuil.setText("Seuil maximal actuel " + seuil + " cm");		//Affiche le nouveau seuil à l'écran

@@ -98,7 +98,7 @@ public class GUI extends javax.swing.JFrame {
 		appliquerSeuil.addActionListener(new java.awt.event.ActionListener() {
 			//Définition de l'action lors du clic sur appliquer
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                controller.writeData(Integer.parseInt(entrerSeuil.getText()));               
+                controller.writeData(Integer.parseInt(entrerSeuil.getText())); 
             }
         });
 		window.add(appliquerSeuil);
