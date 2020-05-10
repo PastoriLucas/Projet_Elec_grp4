@@ -9,34 +9,19 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.TooManyListenersException;
 
-public class Model {
+public class Model {	
+	int seuil; 											//Contient le seuil de distance maximal authorisé
+    String distanceRecue = "";														
+    String caractRecu;
+    Enumeration ports = null;							//Contient tous les ports trouvés lors de la recherche de ports
+    HashMap portMap = new HashMap();					//Contient le nom des ports sous forme de hashmapt
+    
+    CommPortIdentifier selectedPortIdentifier = null;	//Contient les ports ouverts
+    SerialPort serialPort = null;						//Contient le serial port actuellement ouvert
 
-    //for containing the ports that will be found
-    Enumeration ports = null;
-    //map the port names to CommPortIdentifiers
-    HashMap portMap = new HashMap();
+    InputStream input = null;							//Stream pour la réception de data
+    OutputStream output = null;							//Stream pour l'envoi de data
 
-    //this is the object that contains the opened port
-    CommPortIdentifier selectedPortIdentifier = null;
-    SerialPort serialPort = null;
-
-    //input and output streams for sending and receiving data
-    InputStream input = null;
-    OutputStream output = null;
-
-    //just a boolean flag that i use for enabling
-    //and disabling buttons depending on whether the program
-    //is connected to a serial port or not
-    boolean bConnected = false;
-
-    //the timeout value for connecting with the port
-    final static int TIMEOUT = 2000;
-
-    //some ascii values for for certain things
-    final static int SPACE_ASCII = 32;
-    final static int DASH_ASCII = 45;
-    final static int NEW_LINE_ASCII = 10;
-
-    //a string for recording what goes on in the program
-    //this string is written to the GUI
+    boolean portConnected = false;							//Booleen pour savoir si on est deja connecté à un port ou pas
+    final static int TIMEOUT = 2000;					//Timeout pour la connexion à un port
 }
