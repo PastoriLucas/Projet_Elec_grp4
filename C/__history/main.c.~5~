@@ -5,21 +5,21 @@
 
 #byte PORTC = 0xF82
 
-//Gestion communication port COM
-char buffer[4];// valeurs de seuil
-int toRead=0; // Flag pour actualisation du seuil
-int compteur=0; // Nombre de caractère écrit
-#int_RDA
-void RDA_isr(void) 
+#INT_RDA//communication rs232
+char buffer[4];
+int toRead=0;
+int compteur=0;
+void  RDA_isr(void) 
 {
    buffer[compteur]=getc();
-   if(buffer[0]=='!' && toRead==0){
+   if(buffer[0]=='!' && toRead==0){                          
       compteur++;
-      if(compteur>=4){
+      if(compteur>=4){            
          compteur=0;
          toRead=1;
       }
-   }   
+   }
+   
 }
 
 void main()
@@ -27,16 +27,16 @@ void main()
    
    int16 valeur;
    int16 seuil;
+   seuil = 50;
    long temps;
    int gauche,droite;
-   int16 centaine,dizaine,unite;
+   int centaine,dizaine,unite;
    
    set_tris_c(0b10000010);
    
    enable_interrupts(INT_RDA);
    enable_interrupts(GLOBAL);
    setup_timer_0(RTCC_INTERNAL);
-   setup_low_volt_detect(FALSE);
 
    while(TRUE)
    {
@@ -54,11 +54,12 @@ void main()
         while(!input(PIN_C1)) {}
         set_timer0(0);
         while(input(PIN_C1)) {}
-        temps = (long)get_timer0();
+        temps = (long)get_timer0()*1.6;
         
         //Calcul
         valeur = (int16)temps*0.017;//En centimètres
         printf("%ld$",valeur);
+        printf("%ld!",seuil);
         
         //Affichage
        if (valeur >= 1000) {
@@ -86,16 +87,12 @@ void main()
        //Calcul du seuil
        if (toRead == 1) {
          centaine = buffer[1] - 48;
-         dizaine = buffer[2] - 48;
+         dizaine = buffer[2] - 4;
          unite = buffer[3] - 48;
-         seuil = ((100*centaine)+(10*dizaine)+unite);
+         seuil = (int16) ((100*dizaine)+(10*dizaine)+unite);
          toRead = 0;
        }
-       else {
-         if (seuil == NULL) {
-            seuil = 25;
-         }
-       }
+
        
        //Gestion led % seuil
        if (valeur > seuil) {
@@ -106,6 +103,7 @@ void main()
             output_high(PIN_E2);
             output_low(PIN_E1);
        }
+ 
   }
 }
                

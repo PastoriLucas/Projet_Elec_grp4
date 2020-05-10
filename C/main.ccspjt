@@ -3,18 +3,54 @@ Target=main.hex
 Processor_Text=PIC18F458
 CCSVersion=5.008
 Compiler=PCH
+Development_Mode=
+ToolSuite=CCS
 [Target Data]
 FileList=main.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
 [Directories]
-Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\DriversC:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\myria\Desktop\Projet_Elec_grp4\C\
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Users\myria\Desktop\Projet_Elec_grp4\C\;A:\Program Files (x86)\PICC\Devices\;A:\Program Files (x86)\PICC\Drivers\;C:\Users\obi-o\Documents\2TL1\Projet_Elec_grp4\C\
+Library=
+LinkerScript=
 [main.c]
 Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
 [mru-list]
 1=main.c
 [Opened Files]
 1=main.c
-2=main.h
-3=
+2=
+3=..\..\..\Photos\projetElec.c
+4=
+[defines]
+enabled=0
+chip=1
+D1=
+V1=
+[fileformats]
+forcecoff=1
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[CompilerVersion]
+Fixed=
 [Units]
 Count=1
 1=main (main)

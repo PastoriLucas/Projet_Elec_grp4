@@ -6,12 +6,13 @@
 #byte PORTC = 0xF82
 
 //Gestion communication port COM
+#INT_RDA
 char buffer[4];// valeurs de seuil
 int toRead=0; // Flag pour actualisation du seuil
 int compteur=0; // Nombre de caractère écrit
-#int_RDA
 void RDA_isr(void) 
 {
+   printf("5$");
    buffer[compteur]=getc();
    if(buffer[0]=='!' && toRead==0){
       compteur++;
@@ -54,7 +55,7 @@ void main()
         while(!input(PIN_C1)) {}
         set_timer0(0);
         while(input(PIN_C1)) {}
-        temps = (long)get_timer0();
+        temps = (long)get_timer0()*1.6;
         
         //Calcul
         valeur = (int16)temps*0.017;//En centimètres
@@ -88,7 +89,7 @@ void main()
          centaine = buffer[1] - 48;
          dizaine = buffer[2] - 48;
          unite = buffer[3] - 48;
-         seuil = ((100*centaine)+(10*dizaine)+unite);
+         seuil = ((100*dizaine)+(10*dizaine)+unite);
          toRead = 0;
        }
        else {

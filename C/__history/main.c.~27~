@@ -5,15 +5,14 @@
 
 #byte PORTC = 0xF82
 
-//Gestion communication port COM
-char buffer[4];// valeurs de seuil
-int toRead=0; // Flag pour actualisation du seuil
-int compteur=0; // Nombre de caractère écrit
-#int_RDA
-void RDA_isr(void) 
+#INT_RDA//communication rs232
+char buffer[4];
+int toRead=0;
+int compteur=0;
+void  RDA_isr(void) 
 {
    buffer[compteur]=getc();
-   if(buffer[0]=='!' && toRead==0){
+   if(buffer[0]=='!' && toRead==0){                          
       compteur++;
       if(compteur>=4){
          compteur=0;
@@ -36,7 +35,6 @@ void main()
    enable_interrupts(INT_RDA);
    enable_interrupts(GLOBAL);
    setup_timer_0(RTCC_INTERNAL);
-   setup_low_volt_detect(FALSE);
 
    while(TRUE)
    {
@@ -54,7 +52,7 @@ void main()
         while(!input(PIN_C1)) {}
         set_timer0(0);
         while(input(PIN_C1)) {}
-        temps = (long)get_timer0();
+        temps = (long)get_timer0()*1.6;
         
         //Calcul
         valeur = (int16)temps*0.017;//En centimètres
@@ -88,7 +86,7 @@ void main()
          centaine = buffer[1] - 48;
          dizaine = buffer[2] - 48;
          unite = buffer[3] - 48;
-         seuil = ((100*centaine)+(10*dizaine)+unite);
+         seuil = ((100*dizaine)+(10*dizaine)+unite);
          toRead = 0;
        }
        else {

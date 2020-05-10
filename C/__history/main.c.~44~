@@ -54,11 +54,12 @@ void main()
         while(!input(PIN_C1)) {}
         set_timer0(0);
         while(input(PIN_C1)) {}
-        temps = (long)get_timer0();
+        temps = (long)get_timer0()*1.6;
         
         //Calcul
         valeur = (int16)temps*0.017;//En centimètres
         printf("%ld$",valeur);
+        print("%ld$",seuil);
         
         //Affichage
        if (valeur >= 1000) {
