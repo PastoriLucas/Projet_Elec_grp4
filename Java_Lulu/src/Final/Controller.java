@@ -138,29 +138,32 @@ public class Controller implements SerialPortEventListener {
   //what happens when data is received
     //pre style="font-size: 11px;": serial event is triggered
     //post: processing on the data it reads
-    
     int i = 0;
     String result = "";
+    String caract; 
     public void serialEvent(SerialPortEvent evt) {
         if (evt.getEventType() == SerialPortEvent.DATA_AVAILABLE)
         {
-            try
-            {
-            	
+            try {
                 byte singleData = (byte)model.input.read();
-
-                if (singleData != model.NEW_LINE_ASCII)
-                {
-                	window.resultat.setText(new String(new byte[] {singleData})); 
+                caract = new String(new byte[] {singleData});
+                if (singleData != model.NEW_LINE_ASCII) {
+                    if(caract.equalsIgnoreCase("$")) {
+                        window.resultat.setText(result);
+                        result = "";
+                    }
+                    else {
+                        result += caract;
+                    }
                 }
                 else
                 {
-                	System.out.println("error");
+                    System.out.println("error");
                 }
             }
             catch (Exception e)
             {
-            	System.out.println("Failed to read data. (" + e.toString() + ")"); 
+                System.out.println("Failed to read data. (" + e.toString() + ")"); 
             }
         }
     }
@@ -172,7 +175,10 @@ public class Controller implements SerialPortEventListener {
     {
         try
         {
-            model.output.write(seuil);
+        	String signal = "9999";
+        	signal = signal + seuil;
+        	System.out.println(signal);
+            model.output.write(Integer.parseInt(signal));
             model.output.flush();
             //this is a delimiter for the data
             model.output.write(model.DASH_ASCII);

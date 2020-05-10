@@ -1,8 +1,0 @@
-public class ProjetModel {
-
-	private String distance = "1000";
-	
-	public String getDistanceValue() {
-		return distance;
-	}
-}
